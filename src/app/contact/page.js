@@ -26,6 +26,19 @@ export default async function ContactPage() {
             Parlons de votre <span className="grad-text">projet</span>
           </h1>
           <p className="lead">{MEETING.long}</p>
+
+          {MEETING.bookingUrl && (
+            <a
+              href={MEETING.bookingUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn--primary"
+              style={{ marginTop: 26 }}
+            >
+              Choisir un créneau
+              <Icon name="ArrowUpRight" />
+            </a>
+          )}
         </div>
       </section>
 
@@ -49,6 +62,15 @@ export default async function ContactPage() {
                   {contact.phone}
                 </div>
               </a>
+              {contact.phoneAlt && (
+                <a className="panel contact-line" href={`tel:${contact.phoneAlt.replace(/\s+/g, "")}`}>
+                  <Icon name="Phone" />
+                  <div>
+                    <span>Second numéro</span>
+                    {contact.phoneAlt}
+                  </div>
+                </a>
+              )}
               <a
                 className="panel contact-line"
                 href={whatsappLink("Bonjour SSD Sirius, je souhaite discuter d'un projet.")}
@@ -65,14 +87,15 @@ export default async function ContactPage() {
                 <Icon name="MapPin" />
                 <div>
                   <span>Localisation</span>
-                  {contact.city}
+                  {(contact.cities || [contact.city]).join(" · ")}
                 </div>
               </div>
 
               <div className="panel" style={{ padding: 18 }}>
                 <p className="muted" style={{ fontSize: "0.88rem" }}>
-                  Nous concevons, développons et intégrons des solutions digitales sur mesure
-                  pour les entreprises et organisations du Mali et d'Afrique francophone.
+                  Basés entre Bamako et Paris, nous concevons, développons et publions des
+                  applications et produits digitaux sur mesure pour le Mali et l&apos;Afrique
+                  francophone.
                 </p>
               </div>
             </div>

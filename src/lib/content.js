@@ -105,7 +105,14 @@ export async function getProjectSlugs() {
 /** Coordonnées et infos publiques. */
 export async function getSettings() {
   const fallback = {
-    contact: CONTACT,
+    contact: {
+      email: CONTACT.email,
+      phone: CONTACT.phone,
+      phoneAlt: CONTACT.phoneAlt,
+      whatsapp: CONTACT.whatsapp,
+      cities: CONTACT.cities,
+      city: CONTACT.city,
+    },
     social: SOCIAL,
     company: { name: SITE.legalName, tagline: SITE.tagline },
     stats: STATS,

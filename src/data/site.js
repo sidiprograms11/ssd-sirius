@@ -29,6 +29,9 @@ export const MEETING = {
   altLabel: "Parlez-nous de votre projet",
   short: "Parlez-nous de votre projet. Tout le reste, on s'en occupe.",
   long: "Pas de dossier à monter ni de formulaire interminable. Parlez-nous de votre projet — un simple échange en visio suffit — et tout le reste, on s'en occupe : conception, développement, base de données, paiements et mise en ligne sur les stores.",
+  // Lien de réservation (Google Agenda / Calendly).
+  // Tant qu'il est vide, les boutons renvoient vers /contact.
+  bookingUrl: process.env.NEXT_PUBLIC_BOOKING_URL || "",
 };
 
 // Engagements concrets mis en avant sur la home.
@@ -66,12 +69,21 @@ export const GUARANTEES = [
 ];
 
 export const CONTACT = {
-  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@ssd-sirius.com",
-  phone: process.env.NEXT_PUBLIC_CONTACT_PHONE || "+223 70 00 00 00",
-  whatsapp: process.env.NEXT_PUBLIC_CONTACT_WHATSAPP || "22370000000",
-  city: process.env.NEXT_PUBLIC_CONTACT_CITY || "Bamako, Mali",
+  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "sidigano8@gmail.com",
+  // Numéro principal : appels + WhatsApp
+  phone: process.env.NEXT_PUBLIC_CONTACT_PHONE || "+33 6 98 43 36 02",
+  // Second numéro joignable
+  phoneAlt: process.env.NEXT_PUBLIC_CONTACT_PHONE_ALT || "+33 7 51 41 90 26",
+  // Format international sans « + » ni espaces, pour les liens wa.me
+  whatsapp: process.env.NEXT_PUBLIC_CONTACT_WHATSAPP || "33698433602",
+  cities: ["Bamako, Mali", "Paris, France"],
+  get city() {
+    return this.cities.join(" · ");
+  },
 };
 
+// Aucun réseau social pour l'instant : les icônes restent masquées
+// tant que ces champs sont vides.
 export const SOCIAL = {
   linkedin: "",
   facebook: "",
