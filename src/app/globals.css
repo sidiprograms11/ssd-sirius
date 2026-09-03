@@ -998,6 +998,52 @@ h4 {
   line-height: 1.4;
 }
 
+/* Titre de projet avec logo d'application */
+.project-title-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2.4vw, 22px);
+  margin-block: 16px 18px;
+}
+
+.project-logo {
+  width: clamp(52px, 8vw, 76px);
+  height: clamp(52px, 8vw, 76px);
+  border-radius: 22%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+
+/* Trio de téléphones en tête de fiche application */
+.hero-phones {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(14px, 3vw, 34px);
+}
+
+.hero-phones .mock--phone {
+  max-width: 250px;
+  flex: 1 1 0;
+}
+
+.hero-phones .mock--phone:nth-child(2) {
+  max-width: 280px;
+  transform: translateY(-22px);
+  z-index: 1;
+}
+
+@media (max-width: 720px) {
+  .hero-phones {
+    gap: 12px;
+    align-items: center;
+  }
+  .hero-phones .mock--phone:nth-child(2) { transform: none; }
+  .hero-phones .mock--phone:nth-child(3) { display: none; }
+}
+
 /* Listes de fonctionnalités */
 .feature-list {
   list-style: none;

@@ -1,22 +1,27 @@
 # Captures Flash Market
 
-Déposer ici les captures d'écran réelles de l'application, avec **exactement** ces noms :
+Fichiers actuellement utilisés par le site :
 
-| Fichier | Écran attendu |
-| --- | --- |
-| `01-recherche.png` | Recherche géolocalisée + grille « Parcourir par catégorie » |
-| `02-paiement-orange-money.png` | Boost d'annonce → écran de paiement Orange Money |
-| `03-choix-operateur.png` | Paiement Mobile Money → choix du pays / de l'opérateur |
-| `04-profil-vendeur.png` | Profil vendeur (Mes annonces, Booster, Espace pro) |
-| `05-accueil.png` | Accueil (pros, récemment consultés, annonces récentes) |
-| `06-espace-pro.png` | Espace professionnel → onglet Performances |
-| `logo.png` | Icône de l'application (optionnel) |
+| Fichier | Écran | État |
+| --- | --- | --- |
+| `05-accueil.jpg` | Accueil (pros, récemment consultés, annonces récentes) | ✅ |
+| `01-recherche.jpg` | Recherche géolocalisée + « Parcourir par catégorie » | ✅ |
+| `04-profil-vendeur.jpg` | Profil vendeur (Mes annonces, Booster, Espace pro) | ✅ |
+| `03-choix-operateur.jpg` | Paiement → choix du pays / de l'opérateur | ✅ |
+| `02-paiement-orange-money.jpg` | Confirmation Orange Money | ✅ |
+| `06-espace-pro.jpg` | Espace professionnel → onglet Performances | ❌ manquant |
+| `logo.jpg` | Icône de l'application | ✅ |
 
-Format conseillé : PNG, largeur 900–1200 px, portrait (ratio ~9:19).
+## Ajouter l'écran manquant
 
-Ensuite, passer `FLASH_SCREENSHOTS_READY` à `true` dans
-[`src/data/projects.js`](../../../src/data/projects.js) — les vraies captures
-remplacent alors automatiquement les aperçus dégradés.
+Dépose `06-espace-pro.jpg` dans ce dossier, puis décommente la ligne
+correspondante dans `screens` dans
+[`src/data/projects.js`](../../../src/data/projects.js).
 
-> Astuce : si une image manque ou ne charge pas, le site retombe tout seul sur
-> l'aperçu dégradé, sans rien casser.
+## Notes
+
+- Format : JPG ou PNG, portrait (~9:19), largeur 900–1200 px.
+- Si une image manque ou ne charge pas, le site retombe automatiquement sur
+  l'aperçu dégradé aux couleurs de Flash — rien ne casse.
+- `FLASH_SCREENSHOTS_READY` (dans `src/data/projects.js`) permet de revenir
+  aux aperçus dégradés pour toutes les captures d'un coup.

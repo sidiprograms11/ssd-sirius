@@ -54,11 +54,7 @@ export default async function ProjectPage({ params }) {
   if (!project) notFound();
 
   const isPhone = project.type === "application";
-  const hasMobileMoney =
-    [project.summary, project.solution, JSON.stringify(project.technologies || [])]
-      .join(" ")
-      .toLowerCase()
-      .includes("mobile money");
+  const pay = project.payment;
 
   const screenItems =
     project.screens?.length > 0
@@ -102,9 +98,20 @@ export default async function ProjectPage({ params }) {
             {TYPE_LABEL[project.type] || "Projet"}
             {project.category ? ` — ${project.category}` : ""}
           </span>
-          <h1 className="display page-hero__title" style={{ fontSize: "clamp(2rem, 4.6vw, 3rem)" }}>
-            {project.title}
-          </h1>
+          <div className="project-title-row">
+            {project.logo_url && (
+              <img
+                src={project.logo_url}
+                alt={`Logo ${project.title}`}
+                className="project-logo"
+                width={72}
+                height={72}
+              />
+            )}
+            <h1 className="display page-hero__title" style={{ fontSize: "clamp(2rem, 4.6vw, 3rem)", margin: 0 }}>
+              {project.title}
+            </h1>
+          </div>
           <p className="lead">{project.summary}</p>
 
           <div className="tag-row" style={{ marginTop: 22 }}>
@@ -135,11 +142,19 @@ export default async function ProjectPage({ params }) {
 
       <section className="section section--tight">
         <div className="container">
-          <MockShot
-            {...(project.cover_url ? { src: project.cover_url } : { tone: project.cover })}
-            label={project.title}
-            phone={isPhone}
-          />
+          {isPhone && screenItems.length >= 3 ? (
+            <div className="hero-phones">
+              {screenItems.slice(0, 3).map((s, i) => (
+                <MockShot key={i} tone={s.tone} label={s.label} src={s.url} alt={s.label} phone />
+              ))}
+            </div>
+          ) : (
+            <MockShot
+              {...(project.cover_url ? { src: project.cover_url } : { tone: project.cover })}
+              label={project.title}
+              phone={isPhone}
+            />
+          )}
         </div>
       </section>
 
@@ -175,20 +190,31 @@ export default async function ProjectPage({ params }) {
         </section>
       )}
 
-      {hasMobileMoney && (
+      {pay && (
         <section className="section section--tight">
           <div className="container">
             <div className="mm-callout">
               <span className="icon-orbit">
                 <Icon name="Wallet" />
               </span>
-              <div className="stack" style={{ "--gap": "8px" }}>
+              <div className="stack" style={{ "--gap": "10px" }}>
                 <h2 className="h3">Paiements Mobile Money intégrés</h2>
                 <p className="muted">
-                  Intégration réelle d'une passerelle Mobile Money multi-opérateurs et multi-pays
-                  (Mali, Côte d'Ivoire…), avec initiation de paiement, gestion des retours
-                  d'opérateur, paiement par QR et suivi des transactions.
+                  Le boost d&apos;annonces et les services payants sont réglés directement dans
+                  l&apos;application, via l&apos;agrégateur <strong>{pay.aggregator}</strong>
+                  {pay.operators?.length > 0 && <> et {pay.operators.join(", ")}</>} : sélection du
+                  pays et de l&apos;opérateur, initiation du paiement, confirmation par code USSD ou
+                  QR, et suivi de la transaction jusqu&apos;à la validation.
                 </p>
+                <div className="tag-row">
+                  <span className="tag">{pay.aggregator}</span>
+                  {pay.operators?.map((o) => (
+                    <span key={o} className="tag">{o}</span>
+                  ))}
+                  {pay.countries?.map((c) => (
+                    <span key={c} className="tag">{c}</span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

@@ -34,7 +34,13 @@ export const PROJECTS = [
     link_url: "https://link-my.app/flash-market-install",
     link_label: "Installer Flash Market",
     cover: "flash",
+    logo_url: "/realisations/flash-market/logo.jpg",
     platforms: ["iOS", "Android"],
+    payment: {
+      aggregator: "XPaye Africa",
+      operators: ["Orange Money"],
+      countries: ["Mali", "Côte d'Ivoire"],
+    },
     credits: ["Sidi Oumar GANO", "Mohamed Lamine"],
     summary:
       "La marketplace mobile pensée pour acheter, vendre et trouver des professionnels au Mali. Conçue et développée intégralement par SSD Sirius.",
@@ -68,9 +74,9 @@ export const PROJECTS = [
         text: "Boutique, catalogue, vitrine de services, portfolio, tarifs, commandes, devis et statistiques de visibilité.",
       },
       {
-        icon: "MapPin",
-        title: "Recherche géolocalisée",
-        text: "Filtres par prix, état, localisation et type de vendeur, avec tri par proximité (Expo Location).",
+        icon: "Wallet",
+        title: "Paiement Mobile Money intégré",
+        text: "Boost d'annonces et services payants réglés en Mobile Money via l'agrégateur XPaye Africa et Orange Money.",
       },
       {
         icon: "BellRing",
@@ -127,12 +133,12 @@ export const PROJECTS = [
       "Les données privées sont protégées côté serveur, pas uniquement dans l'interface.",
     ],
     screens: [
-      flashShot("01-recherche.png", "flash", "Recherche géolocalisée et catégories"),
-      flashShot("02-paiement-orange-money.png", "flash-pay", "Boost d'annonce — paiement Orange Money"),
-      flashShot("03-choix-operateur.png", "flash-pay", "Choix du pays et de l'opérateur"),
-      flashShot("04-profil-vendeur.png", "flash-2", "Profil vendeur — annonces & espace pro"),
-      flashShot("05-accueil.png", "flash", "Accueil — pros et annonces récentes"),
-      flashShot("06-espace-pro.png", "flash-2", "Espace pro — catalogue & performances"),
+      flashShot("05-accueil.jpg", "flash", "Accueil — pros et annonces récentes"),
+      flashShot("01-recherche.jpg", "flash", "Recherche géolocalisée et catégories"),
+      flashShot("04-profil-vendeur.jpg", "flash-2", "Profil vendeur — annonces & espace pro"),
+      flashShot("03-choix-operateur.jpg", "flash-pay", "Paiement — choix du pays et de l'opérateur"),
+      flashShot("02-paiement-orange-money.jpg", "flash-pay", "Confirmation Orange Money"),
+      // À venir : 06-espace-pro.jpg (onglet Performances de l'espace professionnel)
     ],
     techGroups: [
       { label: "Application mobile", items: ["React Native", "Expo", "TypeScript"] },
@@ -145,7 +151,7 @@ export const PROJECTS = [
       { label: "Géolocalisation", items: ["Expo Location"] },
       { label: "Déploiement mobile", items: ["EAS Build", "EAS Update"] },
       { label: "Administration", items: ["HTML", "CSS", "JavaScript"] },
-      { label: "Paiement", items: ["Mobile Money", "Orange Money"] },
+      { label: "Paiement", items: ["XPaye Africa", "Orange Money", "Mobile Money"] },
     ],
     technologies: ["React Native", "Expo", "TypeScript", "Supabase", "PostgreSQL"],
     metrics: [
