@@ -47,10 +47,18 @@ export default function ServicesPage() {
                     {s.title}
                   </h2>
                   <p className="muted">{s.description}</p>
-                  <Link href="/contact" className="link-arrow">
-                    Demander une estimation
-                    <Icon name="ArrowRight" />
-                  </Link>
+                  <div style={{ display: "flex", gap: 22, flexWrap: "wrap" }}>
+                    <Link href="/contact" className="link-arrow">
+                      Demander une estimation
+                      <Icon name="ArrowRight" />
+                    </Link>
+                    {s.proof && (
+                      <Link href={s.proof.href} className="link-arrow">
+                        {s.proof.label}
+                        <Icon name="ArrowUpRight" />
+                      </Link>
+                    )}
+                  </div>
                 </div>
                 <ul className="stack" style={{ "--gap": "10px", listStyle: "none" }}>
                   {s.points.map((p) => (

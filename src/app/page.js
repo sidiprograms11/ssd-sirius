@@ -8,22 +8,23 @@ import MockShot from "@/components/MockShot";
 import { SiriusVisual } from "@/components/SiriusMark";
 import { getProjects, getSettings } from "@/lib/content";
 import { SERVICES, DIFFERENTIATORS } from "@/data/services";
-import { SITE } from "@/data/site";
+import { SITE, HERO, GUARANTEES } from "@/data/site";
 
 export const revalidate = 300;
 
 const USE_CASES = [
+  { icon: "Smartphone", label: "Applications mobiles" },
   { icon: "ShoppingCart", label: "Commerce en ligne" },
   { icon: "Store", label: "Marketplaces" },
   { icon: "Wallet", label: "Mobile Money" },
-  { icon: "Smartphone", label: "Applications mobiles" },
   { icon: "Boxes", label: "API & systèmes" },
   { icon: "Globe", label: "Présence web" },
 ];
 
 export default async function HomePage() {
   const [projects, settings] = await Promise.all([getProjects(), getSettings()]);
-  const [feature, ...rest] = projects;
+  const flagship = projects.find((p) => p.flagship) || projects[0];
+  const rest = projects.filter((p) => p.slug !== flagship?.slug);
   const stats = settings.stats || [];
 
   return (
@@ -33,24 +34,22 @@ export default async function HomePage() {
         <div className="container">
           <div className="hero__grid">
             <div>
-              <span className="eyebrow">{SITE.legalName}</span>
+              <span className="eyebrow">{HERO.eyebrow}</span>
               <h1 className="display hero__title">
-                Des solutions digitales pour un avenir{" "}
-                <span className="grad-text">sans limites</span>.
+                {HERO.titleLead} <span className="grad-text">{HERO.titleAccent}</span>.
               </h1>
-              <p className="lead">
-                Nous concevons des sites, applications et systèmes sur mesure pour accompagner
-                la croissance des entreprises maliennes et africaines.
-              </p>
+              <p className="lead">{HERO.subtitle}</p>
               <div className="hero__cta">
                 <Link href="/contact" className="btn btn--primary">
-                  Démarrer un projet
+                  Démarrer mon projet
                   <Icon name="ArrowRight" />
                 </Link>
-                <Link href="/realisations" className="btn btn--ghost">
-                  Voir les réalisations
-                  <Icon name="ArrowRight" />
-                </Link>
+                {flagship && (
+                  <Link href={`/realisations/${flagship.slug}`} className="btn btn--ghost">
+                    Découvrir {flagship.title}
+                    <Icon name="ArrowRight" />
+                  </Link>
+                )}
               </div>
             </div>
 
@@ -72,6 +71,63 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ---------------- Projet phare : Flash Market ---------------- */}
+      {flagship && (
+        <section className="section" id="flash-market">
+          <div className="container">
+            <Reveal className="flagship">
+              <div className="flagship__grid">
+                <div className="stack" style={{ "--gap": "16px" }}>
+                  <span className="badge-flagship">
+                    <Icon name="Star" />
+                    Projet phare
+                  </span>
+                  <h2 className="h2" style={{ fontSize: "clamp(1.7rem, 3.2vw, 2.4rem)" }}>
+                    {flagship.title}
+                  </h2>
+                  {flagship.platforms?.length > 0 && (
+                    <div className="platform-badges">
+                      {flagship.platforms.map((p) => (
+                        <span key={p} className="tag">{p}</span>
+                      ))}
+                    </div>
+                  )}
+                  <p className="muted">{flagship.summary}</p>
+                  <div className="tag-row">
+                    {flagship.technologies.slice(0, 5).map((t) => (
+                      <span key={t} className="tag">{t}</span>
+                    ))}
+                  </div>
+                  <Link href={`/realisations/${flagship.slug}`} className="btn btn--primary">
+                    Découvrir le projet
+                    <Icon name="ArrowRight" />
+                  </Link>
+                </div>
+
+                <div>
+                  {flagship.screens?.length > 0 ? (
+                    <div className="screens-row">
+                      {flagship.screens.slice(0, 4).map((s, i) => (
+                        <div className="screen-item" key={i}>
+                          <MockShot tone={s.tone} label={s.label} phone src={s.url} />
+                          <span>{s.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <MockShot
+                      {...(flagship.cover_url ? { src: flagship.cover_url } : { tone: flagship.cover })}
+                      label={flagship.title}
+                      phone={flagship.type === "application"}
+                    />
+                  )}
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {/* ---------------- Services ---------------- */}
       <section className="section" id="services">
@@ -96,53 +152,60 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ---------------- Réalisations ---------------- */}
-      <section className="section" id="realisations">
+      {/* ---------------- Engagements ---------------- */}
+      <section className="section section--tight" id="engagements">
         <div className="container">
-          <div className="section-head" style={{ maxWidth: "none", flexDirection: "row", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 20 }}>
-            <div className="stack" style={{ "--gap": "14px" }}>
-              <span className="eyebrow">Réalisations</span>
-              <h2 className="h2">
-                Des <span className="grad-text">projets</span> qui parlent d'eux-mêmes.
-              </h2>
-            </div>
-            <Link href="/realisations" className="btn btn--ghost">
-              Voir tous les projets
-              <Icon name="ArrowRight" />
-            </Link>
+          <div className="section-head">
+            <span className="eyebrow">Nos engagements</span>
+            <h2 className="h2">
+              Ce que <span className="grad-text">Sirius</span> garantit
+            </h2>
+            <p className="lead">
+              Vous n'avez qu'à valider et à lancer votre activité. Le reste, c'est notre travail.
+            </p>
           </div>
 
-          {feature && (
-            <Reveal className="panel feature-project" style={{ marginBottom: 26 }}>
-              <div>
-                <span className="feature-project__index">01 / {String(projects.length).padStart(2, "0")}</span>
-                <h3 className="h2" style={{ fontSize: "clamp(1.5rem, 2.6vw, 2rem)", margin: "12px 0 12px" }}>
-                  {feature.title}
-                </h3>
-                <p className="muted">{feature.summary}</p>
-                <div className="tag-row" style={{ marginTop: 18 }}>
-                  {feature.technologies.slice(0, 4).map((t) => (
-                    <span key={t} className="tag">{t}</span>
-                  ))}
-                </div>
-                <Link
-                  href={`/realisations/${feature.slug}`}
-                  className="link-arrow"
-                  style={{ marginTop: 22 }}
-                >
-                  Voir le projet
-                  <Icon name="ArrowRight" />
-                </Link>
-              </div>
-              <MockShot
-                {...(feature.cover_url ? { src: feature.cover_url } : { tone: feature.cover })}
-                label={feature.title}
-                phone={feature.type === "application"}
-              />
-            </Reveal>
-          )}
+          <div className="grid grid-3">
+            {GUARANTEES.map((g, i) => (
+              <Reveal key={g.title} delay={i * 50} className="card">
+                <span className="icon-orbit">
+                  <Icon name={g.icon} />
+                </span>
+                <h3 className="h3">{g.title}</h3>
+                <p className="muted">{g.text}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          {rest.length > 0 && (
+      {/* ---------------- Autres réalisations ---------------- */}
+      {rest.length > 0 && (
+        <section className="section" id="realisations">
+          <div className="container">
+            <div
+              className="section-head"
+              style={{
+                maxWidth: "none",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                flexWrap: "wrap",
+                gap: 20,
+              }}
+            >
+              <div className="stack" style={{ "--gap": "14px" }}>
+                <span className="eyebrow">Réalisations</span>
+                <h2 className="h2">
+                  D'autres <span className="grad-text">projets</span> signés Sirius.
+                </h2>
+              </div>
+              <Link href="/realisations" className="btn btn--ghost">
+                Voir tous les projets
+                <Icon name="ArrowRight" />
+              </Link>
+            </div>
+
             <div className="grid grid-3">
               {rest.map((p, i) => (
                 <Reveal key={p.slug} delay={i * 60}>
@@ -150,9 +213,9 @@ export default async function HomePage() {
                 </Reveal>
               ))}
             </div>
-          )}
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
 
       {/* ---------------- Indicateurs ---------------- */}
       {stats.length > 0 && (

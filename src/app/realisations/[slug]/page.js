@@ -54,10 +54,21 @@ export default async function ProjectPage({ params }) {
   if (!project) notFound();
 
   const isPhone = project.type === "application";
+  const hasMobileMoney =
+    [project.summary, project.solution, JSON.stringify(project.technologies || [])]
+      .join(" ")
+      .toLowerCase()
+      .includes("mobile money");
+
+  const screenItems =
+    project.screens?.length > 0
+      ? project.screens.map((s) => ({ url: s.url, tone: s.tone, label: s.label }))
+      : [];
   const galleryItems =
     project.images?.length > 0
       ? project.images.map((im) => ({ url: im.url, alt: im.alt, label: im.alt }))
       : project.gallery || [];
+  const mediaItems = screenItems.length > 0 ? screenItems : galleryItems;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -87,6 +98,7 @@ export default async function ProjectPage({ params }) {
           </nav>
 
           <span className="eyebrow">
+            {project.flagship ? "Projet phare — " : ""}
             {TYPE_LABEL[project.type] || "Projet"}
             {project.category ? ` — ${project.category}` : ""}
           </span>
@@ -97,6 +109,9 @@ export default async function ProjectPage({ params }) {
 
           <div className="tag-row" style={{ marginTop: 22 }}>
             {project.client_name && <span className="tag">Client : {project.client_name}</span>}
+            {project.platforms?.map((p) => (
+              <span key={p} className="tag">{p}</span>
+            ))}
             {project.technologies?.slice(0, 6).map((t) => (
               <span key={t} className="tag">{t}</span>
             ))}
@@ -125,6 +140,47 @@ export default async function ProjectPage({ params }) {
         </div>
       </section>
 
+      {project.highlights?.length > 0 && (
+        <section className="section section--tight">
+          <div className="container">
+            <div className="section-head">
+              <span className="eyebrow">Ce que démontre ce projet</span>
+            </div>
+            <div className="grid grid-3">
+              {project.highlights.map((h) => (
+                <div className="card" key={h.title}>
+                  <span className="icon-orbit">
+                    <Icon name={h.icon || "Sparkles"} />
+                  </span>
+                  <h3 className="h3">{h.title}</h3>
+                  <p className="muted">{h.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {hasMobileMoney && (
+        <section className="section section--tight">
+          <div className="container">
+            <div className="mm-callout">
+              <span className="icon-orbit">
+                <Icon name="Wallet" />
+              </span>
+              <div className="stack" style={{ "--gap": "8px" }}>
+                <h2 className="h3">Paiements Mobile Money intégrés</h2>
+                <p className="muted">
+                  Intégration réelle d'une passerelle Mobile Money multi-opérateurs et multi-pays
+                  (Mali, Côte d'Ivoire…), avec initiation de paiement, gestion des retours
+                  d'opérateur, paiement par QR et suivi des transactions.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {project.features?.length > 0 && (
         <section className="section section--tight">
           <div className="container">
@@ -134,7 +190,12 @@ export default async function ProjectPage({ params }) {
             <div className="grid grid-2">
               {project.features.map((f) => (
                 <div className="panel" key={f} style={{ padding: "16px 18px", display: "flex", gap: 12 }}>
-                  <Icon name="Check" width={18} height={18} style={{ color: "var(--violet-bright)", flexShrink: 0, marginTop: 3 }} />
+                  <Icon
+                    name="Check"
+                    width={18}
+                    height={18}
+                    style={{ color: "var(--violet-bright)", flexShrink: 0, marginTop: 3 }}
+                  />
                   <span className="muted">{f}</span>
                 </div>
               ))}
@@ -143,14 +204,38 @@ export default async function ProjectPage({ params }) {
         </section>
       )}
 
-      {galleryItems.length > 0 && (
+      {mediaItems.length > 0 && (
         <section className="section section--tight">
           <div className="container">
             <div className="section-head">
               <span className="eyebrow">Aperçus</span>
-              <h2 className="h2" style={{ fontSize: "clamp(1.4rem, 2.6vw, 1.9rem)" }}>Galerie du projet</h2>
+              <h2 className="h2" style={{ fontSize: "clamp(1.4rem, 2.6vw, 1.9rem)" }}>
+                {isPhone ? "L'application en images" : "Galerie du projet"}
+              </h2>
             </div>
-            <ProjectGallery items={galleryItems} phone={isPhone} />
+            <ProjectGallery items={mediaItems} phone={isPhone} />
+          </div>
+        </section>
+      )}
+
+      {project.techGroups?.length > 0 && (
+        <section className="section section--tight">
+          <div className="container">
+            <div className="section-head">
+              <span className="eyebrow">Stack technique</span>
+            </div>
+            <div className="tech-groups">
+              {project.techGroups.map((g) => (
+                <div className="panel tech-group" key={g.label} style={{ padding: "20px 22px" }}>
+                  <h4>{g.label}</h4>
+                  <div className="tag-row">
+                    {(g.items || []).map((it) => (
+                      <span key={it} className="tag">{it}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}
@@ -158,14 +243,16 @@ export default async function ProjectPage({ params }) {
       {(project.metrics?.length > 0 || project.link_url) && (
         <section className="section section--tight">
           <div className="container">
-            <div className="grid grid-3">
-              {project.metrics?.map((m) => (
-                <div className="panel" key={m.label} style={{ padding: "22px 20px" }}>
-                  <span className="stats__label">{m.label}</span>
-                  <p style={{ fontSize: "1.05rem", marginTop: 6 }}>{m.value}</p>
-                </div>
-              ))}
-            </div>
+            {project.metrics?.length > 0 && (
+              <div className="grid grid-3">
+                {project.metrics.map((m) => (
+                  <div className="panel" key={m.label} style={{ padding: "22px 20px" }}>
+                    <span className="stats__label">{m.label}</span>
+                    <p style={{ fontSize: "1.05rem", marginTop: 6 }}>{m.value}</p>
+                  </div>
+                ))}
+              </div>
+            )}
             {project.link_url && (
               <a
                 href={project.link_url}
@@ -183,8 +270,8 @@ export default async function ProjectPage({ params }) {
       )}
 
       <CTA
-        title="Un besoin proche de ce projet ?"
-        text="Décrivez votre contexte : nous revenons vers vous avec une approche et une estimation."
+        title="Vous voulez la même chose pour votre activité ?"
+        text="Décrivez votre projet : on revient vers vous avec une approche, un calendrier et une estimation."
         primary={{ href: "/contact", label: "Parler de mon projet" }}
         secondary={{ href: "/realisations", label: "Autres réalisations" }}
       />

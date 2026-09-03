@@ -33,8 +33,8 @@ export default function AProposPage() {
                 Une structure <span className="grad-text">technologique</span>, basée au Mali
               </h1>
               <p className="lead">
-                {SITE.legalName} conçoit des sites web, applications et systèmes sur mesure.
-                Notre promesse : {SITE.promise.toLowerCase()}
+                {SITE.legalName} conçoit, développe et publie des applications et produits
+                digitaux sur mesure. Notre promesse tient en une phrase : {SITE.promise}
               </p>
             </div>
             <div className="hero__visual" style={{ maxWidth: 360, marginInline: "auto" }}>

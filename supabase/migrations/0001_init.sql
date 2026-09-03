@@ -68,6 +68,12 @@ create table if not exists public.projects (
   features      jsonb not null default '[]'::jsonb,
   technologies  jsonb not null default '[]'::jsonb,
   metrics       jsonb not null default '[]'::jsonb,
+  -- Champs de présentation enrichie (projet phare / application)
+  platforms     jsonb not null default '[]'::jsonb,   -- ["iOS","Android"]
+  highlights    jsonb not null default '[]'::jsonb,   -- [{icon,title,text}]
+  screens       jsonb not null default '[]'::jsonb,   -- [{tone|url,label}]
+  tech_groups   jsonb not null default '[]'::jsonb,   -- [{label,items:[]}]
+  flagship      boolean not null default false,       -- projet mis en tête de portfolio
   featured      boolean not null default false,
   status        text not null default 'draft' check (status in ('draft', 'published', 'archived')),
   cover_url     text,

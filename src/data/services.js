@@ -37,15 +37,17 @@ export const SERVICES = [
     icon: "Smartphone",
     title: "Web & Mobile",
     excerpt:
-      "Applications web et mobiles sur mesure adaptées à vos métiers et à vos utilisateurs.",
+      "Applications iOS et Android sur mesure, développées, hébergées et publiées sur les stores.",
     description:
-      "Nous développons des applications métier et grand public : interfaces claires, performances soignées et fonctionnement dégradé hors-ligne quand c'est nécessaire. Du cadrage au déploiement, nous gérons tout le cycle.",
+      "Nous développons votre application de bout en bout : conception des parcours, développement iOS et Android, back-end et base de données, puis publication sur l'App Store et le Google Play Store. Vous validez, nous livrons — en général en moins d'un mois. Flash Market est notre référence sur ce terrain.",
     points: [
-      "Applications web progressives et applications mobiles",
-      "Interfaces sur mesure et design system dédié",
-      "Mode hors-ligne et synchronisation",
-      "Déploiement et maintenance continue",
+      "Applications iOS et Android à partir d'une base de code unique",
+      "Back-end, API et base de données entièrement pris en charge",
+      "Publication sur l'App Store et le Google Play Store incluse",
+      "Notifications push, messagerie et mode dégradé hors-ligne",
+      "Maintenance, mises à jour et suivi après la mise en ligne",
     ],
+    proof: { label: "Voir Flash Market", href: "/realisations/flash-market" },
   },
   {
     slug: "api-systemes",

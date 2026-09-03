@@ -19,6 +19,13 @@ export default function ProjectCard({ project }) {
         <MockShot {...cover} label={project.title} phone={project.type === "application"} />
       </div>
 
+      {project.flagship && (
+        <span className="badge-flagship" style={{ alignSelf: "flex-start" }}>
+          <Icon name="Star" />
+          Projet phare
+        </span>
+      )}
+
       <div className="project-card__meta">
         <span>{TYPE_LABEL[project.type] || "Projet"}</span>
         {project.category && <span aria-hidden="true">•</span>}
