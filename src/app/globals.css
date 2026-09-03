@@ -1,9 +1,10 @@
 /* ==================================================================
    SSD SIRIUS — Design system unique
-   Univers : premium, sombre, spatial, technologique.
+   Univers : premium, spatial, technologique.
+   Thème sombre par défaut ; thème clair via [data-theme="light"].
    ================================================================== */
 
-/* -------------------------------------------------- Tokens -------- */
+/* -------------------------------------------------- Tokens (sombre) */
 :root {
   /* Fonds */
   --bg-900: #04050c;
@@ -13,16 +14,32 @@
   --bg-panel-strong: rgba(255, 255, 255, 0.045);
   --bg-elevated: #0e1120;
 
+  /* Surfaces translucides */
+  --surface-1: rgba(255, 255, 255, 0.02);
+  --surface-2: rgba(255, 255, 255, 0.03);
+  --surface-3: rgba(255, 255, 255, 0.04);
+
+  /* Chrome (header, overlays) */
+  --header-bg: rgba(5, 6, 13, 0.82);
+  --header-bg-solid: rgba(5, 6, 13, 0.96);
+  --overlay-bg: rgba(4, 5, 12, 0.9);
+
+  /* Halos d'ambiance du body */
+  --body-glow-1: rgba(124, 92, 255, 0.16);
+  --body-glow-2: rgba(79, 124, 255, 0.12);
+
   /* Bordures / séparations */
   --border: rgba(255, 255, 255, 0.09);
   --border-strong: rgba(255, 255, 255, 0.16);
   --border-glow: rgba(124, 143, 255, 0.35);
+  --card-sheen: rgba(124, 143, 255, 0.5);
 
   /* Texte */
   --text: #e9ecf7;
   --text-muted: #a2abc6;
   --text-faint: #6b7391;
   --text-inverse: #06070d;
+  --on-accent: #ffffff;
 
   /* Accents Sirius */
   --blue: #4f7cff;
@@ -62,6 +79,60 @@
   color-scheme: dark;
 }
 
+/* -------------------------------------------------- Tokens (clair) -- */
+:root[data-theme="light"] {
+  --bg-900: #f4f6fc;
+  --bg-800: #ffffff;
+  --bg-700: #eaeef8;
+  --bg-panel: rgba(14, 18, 38, 0.024);
+  --bg-panel-strong: rgba(14, 18, 38, 0.05);
+  --bg-elevated: #ffffff;
+
+  --surface-1: rgba(14, 18, 38, 0.022);
+  --surface-2: rgba(14, 18, 38, 0.035);
+  --surface-3: rgba(14, 18, 38, 0.05);
+
+  --header-bg: rgba(250, 251, 255, 0.85);
+  --header-bg-solid: rgba(250, 251, 255, 0.97);
+  --overlay-bg: rgba(232, 236, 248, 0.94);
+
+  --body-glow-1: rgba(124, 92, 255, 0.1);
+  --body-glow-2: rgba(79, 124, 255, 0.09);
+
+  --border: rgba(14, 18, 38, 0.11);
+  --border-strong: rgba(14, 18, 38, 0.2);
+  --border-glow: rgba(88, 96, 220, 0.4);
+  --card-sheen: rgba(88, 96, 220, 0.45);
+
+  --text: #101529;
+  --text-muted: #4b5473;
+  --text-faint: #737c9c;
+  --text-inverse: #ffffff;
+  --on-accent: #ffffff;
+
+  --blue: #3457dd;
+  --blue-bright: #2f4fd0;
+  --violet: #7742cf;
+  --violet-bright: #6d33c9;
+  --accent-grad: linear-gradient(120deg, #3457dd 0%, #6244e0 45%, #9340d8 100%);
+  --accent-grad-soft: linear-gradient(120deg, rgba(52, 87, 221, 0.12), rgba(147, 64, 216, 0.12));
+
+  --glow-blue: 0 0 30px rgba(52, 87, 221, 0.18);
+  --glow-violet: 0 0 34px rgba(119, 66, 207, 0.16);
+  --glow-cta: 0 0 0 1px rgba(88, 96, 220, 0.25), 0 12px 32px -10px rgba(52, 87, 221, 0.45);
+
+  --shadow-card: 0 20px 46px -26px rgba(16, 21, 41, 0.34);
+  --shadow-pop: 0 26px 60px -22px rgba(16, 21, 41, 0.36);
+
+  color-scheme: light;
+}
+
+/* Couleurs sémantiques lisibles sur fond clair */
+:root[data-theme="light"] .form-note--ok { color: #12784f; }
+:root[data-theme="light"] .form-note--err { color: #b02525; }
+:root[data-theme="light"] .pill--published { color: #12784f; }
+:root[data-theme="light"] .pill--draft { color: #8a5a00; border-color: rgba(190, 130, 0, 0.45); }
+
 /* -------------------------------------------------- Reset -------- */
 *,
 *::before,
@@ -80,8 +151,8 @@ body {
   min-height: 100dvh;
   background-color: var(--bg-900);
   background-image:
-    radial-gradient(1200px 620px at 78% -8%, rgba(124, 92, 255, 0.16), transparent 60%),
-    radial-gradient(900px 520px at 8% 4%, rgba(79, 124, 255, 0.12), transparent 55%);
+    radial-gradient(1200px 620px at 78% -8%, var(--body-glow-1), transparent 60%),
+    radial-gradient(900px 520px at 8% 4%, var(--body-glow-2), transparent 55%);
   background-attachment: fixed;
   color: var(--text);
   font-family: var(--font);
@@ -117,7 +188,7 @@ select {
 
 ::selection {
   background: rgba(124, 143, 255, 0.35);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 :focus-visible {
@@ -281,7 +352,7 @@ h4 {
 .btn--primary {
   border-color: transparent;
   background: var(--accent-grad);
-  color: #fff;
+  color: var(--on-accent);
   box-shadow: var(--glow-cta);
 }
 
@@ -290,7 +361,7 @@ h4 {
 }
 
 .btn--ghost {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--surface-1);
 }
 
 .btn--ghost:hover {
@@ -358,7 +429,7 @@ h4 {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(140deg, rgba(124, 143, 255, 0.5), transparent 45%);
+  background: linear-gradient(140deg, var(--card-sheen), transparent 45%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -387,7 +458,7 @@ h4 {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-3);
   border: 1px solid var(--border);
 }
 
@@ -434,7 +505,7 @@ h4 {
 }
 
 .site-header[data-scrolled="true"] {
-  background: rgba(5, 6, 13, 0.82);
+  background: var(--header-bg);
   backdrop-filter: blur(14px);
   border-bottom-color: var(--border);
 }
@@ -512,6 +583,34 @@ h4 {
   width: 100%;
 }
 
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease),
+    background 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+  border-color: var(--border-glow);
+  background: var(--accent-grad-soft);
+  transform: translateY(-1px);
+}
+
 .nav-toggle {
   display: none;
   background: none;
@@ -527,14 +626,14 @@ h4 {
 
 @media (max-width: 900px) {
   .nav,
-  .site-header .btn--primary { display: none; }
+  .site-header__actions .btn--primary { display: none; }
   .nav-toggle { display: inline-flex; }
   .mobile-nav {
     display: flex;
     flex-direction: column;
     gap: 6px;
     padding: 14px var(--gutter) 26px;
-    background: rgba(5, 6, 13, 0.96);
+    background: var(--header-bg-solid);
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(14px);
   }
@@ -585,6 +684,26 @@ h4 {
 @media (max-width: 960px) {
   .hero__grid { grid-template-columns: 1fr; }
   .hero__visual { max-width: 420px; margin-inline: auto; order: -1; }
+}
+
+/* Scène spatiale du hero */
+.hero__scene {
+  position: relative;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-pop);
+  aspect-ratio: 5 / 4;
+}
+
+.space-scene {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+@media (max-width: 960px) {
+  .hero__scene { aspect-ratio: 16 / 11; }
 }
 
 /* Bandeau de preuves */
@@ -704,7 +823,7 @@ h4 {
   content: "";
   display: block;
   height: 34px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-3);
   border-bottom: 1px solid var(--border);
   background-image: radial-gradient(circle 4px at 18px 17px, #ff5f57 100%, transparent),
     radial-gradient(circle 4px at 36px 17px, #febc2e 100%, transparent),
@@ -738,7 +857,7 @@ h4 {
   font-size: 0.72rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.86);
 }
 
 /* Palettes de mockup */
@@ -877,6 +996,45 @@ h4 {
   font-size: 0.72rem;
   color: var(--text-faint);
   line-height: 1.4;
+}
+
+/* Listes de fonctionnalités */
+.feature-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.feature-list li {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.feature-list svg {
+  flex-shrink: 0;
+  margin-top: 4px;
+  color: var(--violet-bright);
+}
+
+.feature-list--lg {
+  gap: 14px;
+}
+
+.feature-list--lg li {
+  font-size: 1rem;
+}
+
+@media (min-width: 760px) {
+  .feature-list--lg {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 30px;
+  }
 }
 
 /* Groupes de technologies */
@@ -1135,7 +1293,7 @@ h4 {
 .field select {
   width: 100%;
   padding: 13px 15px;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: var(--r-sm);
   color: var(--text);
@@ -1354,7 +1512,7 @@ h4 {
 }
 
 .data-table tr:hover td {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--surface-1);
 }
 
 .pill {

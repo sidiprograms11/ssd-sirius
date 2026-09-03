@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Icon from "@/components/Icon";
 import SiriusMark from "@/components/SiriusMark";
+import ThemeToggle from "@/components/ThemeToggle";
 import { NAV } from "@/data/site";
 
 export default function Header() {
@@ -49,10 +50,13 @@ export default function Header() {
           ))}
         </nav>
 
-        <Link href="/contact" className="btn btn--primary btn--sm">
-          Nous contacter
-          <Icon name="ArrowRight" />
-        </Link>
+        <div className="site-header__actions">
+          <ThemeToggle />
+          <Link href="/contact" className="btn btn--primary btn--sm">
+            Nous contacter
+            <Icon name="ArrowRight" />
+          </Link>
+        </div>
 
         <button
           type="button"

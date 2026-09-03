@@ -5,7 +5,7 @@ import CTA from "@/components/CTA";
 import ProjectCard from "@/components/ProjectCard";
 import ServiceCard from "@/components/ServiceCard";
 import MockShot from "@/components/MockShot";
-import { SiriusVisual } from "@/components/SiriusMark";
+import SpaceScene from "@/components/SpaceScene";
 import { getProjects, getSettings } from "@/lib/content";
 import { SERVICES, DIFFERENTIATORS } from "@/data/services";
 import { SITE, HERO, GUARANTEES } from "@/data/site";
@@ -53,8 +53,8 @@ export default async function HomePage() {
               </div>
             </div>
 
-            <div className="hero__visual">
-              <SiriusVisual />
+            <div className="hero__scene">
+              <SpaceScene />
             </div>
           </div>
 

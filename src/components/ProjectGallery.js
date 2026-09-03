@@ -46,7 +46,7 @@ export default function ProjectGallery({ items = [], phone = false }) {
             position: "fixed",
             inset: 0,
             zIndex: 100,
-            background: "rgba(4,5,12,0.9)",
+            background: "var(--overlay-bg)",
             backdropFilter: "blur(6px)",
             display: "grid",
             placeItems: "center",

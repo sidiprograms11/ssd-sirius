@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Starfield from "@/components/Starfield";
+import { themeInitScript } from "@/components/ThemeToggle";
 import { SITE } from "@/data/site";
 
 const outfit = Outfit({
@@ -60,7 +61,11 @@ export default function RootLayout({ children }) {
   };
 
   return (
-    <html lang="fr" className={outfit.variable}>
+    <html lang="fr" className={outfit.variable} data-theme="dark" suppressHydrationWarning>
+      <head>
+        {/* Applique le thème mémorisé avant le premier rendu (évite le flash) */}
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body>
         <script
           type="application/ld+json"

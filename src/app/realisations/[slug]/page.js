@@ -108,6 +108,7 @@ export default async function ProjectPage({ params }) {
           <p className="lead">{project.summary}</p>
 
           <div className="tag-row" style={{ marginTop: 22 }}>
+            {project.own_product && <span className="tag">Produit SSD Sirius</span>}
             {project.client_name && <span className="tag">Client : {project.client_name}</span>}
             {project.platforms?.map((p) => (
               <span key={p} className="tag">{p}</span>
@@ -116,6 +117,19 @@ export default async function ProjectPage({ params }) {
               <span key={t} className="tag">{t}</span>
             ))}
           </div>
+
+          {project.link_url && (
+            <a
+              href={project.link_url}
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn--primary"
+              style={{ marginTop: 26 }}
+            >
+              {project.link_label || "Voir la réalisation en ligne"}
+              <Icon name="ArrowUpRight" />
+            </a>
+          )}
         </div>
       </section>
 
@@ -181,27 +195,55 @@ export default async function ProjectPage({ params }) {
         </section>
       )}
 
-      {project.features?.length > 0 && (
+      {project.featureGroups?.length > 0 ? (
         <section className="section section--tight">
           <div className="container">
             <div className="section-head">
-              <span className="eyebrow">Fonctionnalités clés</span>
+              <span className="eyebrow">Fonctionnalités</span>
+              <h2 className="h2" style={{ fontSize: "clamp(1.4rem, 2.6vw, 1.9rem)" }}>
+                Tout ce que fait l&apos;application
+              </h2>
             </div>
-            <div className="grid grid-2">
-              {project.features.map((f) => (
-                <div className="panel" key={f} style={{ padding: "16px 18px", display: "flex", gap: 12 }}>
-                  <Icon
-                    name="Check"
-                    width={18}
-                    height={18}
-                    style={{ color: "var(--violet-bright)", flexShrink: 0, marginTop: 3 }}
-                  />
-                  <span className="muted">{f}</span>
+            <div className="grid grid-3" style={{ alignItems: "start" }}>
+              {project.featureGroups.map((g) => (
+                <div className="panel" key={g.label} style={{ padding: "clamp(20px, 3vw, 28px)" }}>
+                  <h3 className="h3" style={{ marginBottom: 16 }}>{g.label}</h3>
+                  <ul className="feature-list">
+                    {(g.items || []).map((it) => (
+                      <li key={it}>
+                        <Icon name="Check" width={16} height={16} />
+                        <span>{it}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               ))}
             </div>
           </div>
         </section>
+      ) : (
+        project.features?.length > 0 && (
+          <section className="section section--tight">
+            <div className="container">
+              <div className="section-head">
+                <span className="eyebrow">Fonctionnalités clés</span>
+              </div>
+              <div className="grid grid-2">
+                {project.features.map((f) => (
+                  <div className="panel" key={f} style={{ padding: "16px 18px", display: "flex", gap: 12 }}>
+                    <Icon
+                      name="Check"
+                      width={18}
+                      height={18}
+                      style={{ color: "var(--violet-bright)", flexShrink: 0, marginTop: 3 }}
+                    />
+                    <span className="muted">{f}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )
       )}
 
       {mediaItems.length > 0 && (
@@ -240,28 +282,51 @@ export default async function ProjectPage({ params }) {
         </section>
       )}
 
-      {(project.metrics?.length > 0 || project.link_url) && (
+      {project.principles?.length > 0 && (
         <section className="section section--tight">
           <div className="container">
-            {project.metrics?.length > 0 && (
-              <div className="grid grid-3">
-                {project.metrics.map((m) => (
-                  <div className="panel" key={m.label} style={{ padding: "22px 20px" }}>
-                    <span className="stats__label">{m.label}</span>
-                    <p style={{ fontSize: "1.05rem", marginTop: 6 }}>{m.value}</p>
-                  </div>
+            <div className="mission" style={{ textAlign: "left" }}>
+              <span className="eyebrow">Principes produit</span>
+              <ul className="feature-list feature-list--lg" style={{ marginTop: 22 }}>
+                {project.principles.map((p) => (
+                  <li key={p}>
+                    <Icon name="Sparkles" width={16} height={16} />
+                    <span>{p}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {project.metrics?.length > 0 && (
+        <section className="section section--tight">
+          <div className="container">
+            <div className="grid grid-3">
+              {project.metrics.map((m) => (
+                <div className="panel" key={m.label} style={{ padding: "22px 20px" }}>
+                  <span className="stats__label">{m.label}</span>
+                  <p style={{ fontSize: "1.05rem", marginTop: 6 }}>{m.value}</p>
+                </div>
+              ))}
+            </div>
+
+            {project.credits?.length > 0 && (
+              <p className="muted" style={{ marginTop: 26, fontSize: "0.88rem" }}>
+                Conçu et développé par {project.credits.join(" et ")} — {SITE.legalName}.
+              </p>
             )}
+
             {project.link_url && (
               <a
                 href={project.link_url}
                 target="_blank"
                 rel="noreferrer"
                 className="btn btn--ghost"
-                style={{ marginTop: 24 }}
+                style={{ marginTop: 20 }}
               >
-                Voir la réalisation en ligne
+                {project.link_label || "Voir la réalisation en ligne"}
                 <Icon name="ExternalLink" />
               </a>
             )}

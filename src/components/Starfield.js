@@ -20,6 +20,15 @@ export default function Starfield() {
     const isMobile = window.matchMedia("(max-width: 720px)").matches;
     const DPR = Math.min(window.devicePixelRatio || 1, 2);
 
+    // Étoiles claires sur fond sombre, poussière sombre sur fond clair.
+    let rgb = "200, 214, 255";
+    const syncTheme = () => {
+      const light = document.documentElement.getAttribute("data-theme") === "light";
+      rgb = light ? "76, 88, 140" : "200, 214, 255";
+    };
+    syncTheme();
+    window.addEventListener("sirius:themechange", syncTheme);
+
     function resize() {
       w = canvas.clientWidth;
       h = canvas.clientHeight;
@@ -45,7 +54,7 @@ export default function Starfield() {
         if (s.a <= 0.15 || s.a >= 0.85) s.dir *= -1;
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(200, 214, 255, ${s.a})`;
+        ctx.fillStyle = `rgba(${rgb}, ${s.a})`;
         ctx.fill();
       }
       raf = requestAnimationFrame(frame);
@@ -57,6 +66,7 @@ export default function Starfield() {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
+      window.removeEventListener("sirius:themechange", syncTheme);
     };
   }, []);
 
