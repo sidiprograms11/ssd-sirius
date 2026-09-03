@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 120" role="img" aria-label="SSD Sirius Solutions Digital">
+  <defs>
+    <linearGradient id="ring" x1="10" y1="20" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4f7cff"/>
+      <stop offset="0.55" stop-color="#7c5cff"/>
+      <stop offset="1" stop-color="#b06bff"/>
+    </linearGradient>
+    <linearGradient id="txt" x1="120" y1="0" x2="320" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#eef1ff"/>
+      <stop offset="1" stop-color="#b7c2ff"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(12 12)">
+    <circle cx="48" cy="48" r="34" fill="none" stroke="url(#ring)" stroke-width="4"/>
+    <path d="M48 12 C50 33 63 46 84 48 C63 50 50 63 48 84 C46 63 33 50 12 48 C33 46 46 33 48 12 Z" fill="#fff"/>
+  </g>
+  <text x="120" y="58" font-family="Outfit, system-ui, sans-serif" font-size="40" font-weight="700" letter-spacing="10" fill="url(#txt)">SIRIUS</text>
+  <text x="122" y="88" font-family="Outfit, system-ui, sans-serif" font-size="13" font-weight="600" letter-spacing="7" fill="#8b93b8">SOLUTIONS DIGITAL</text>
+</svg>
