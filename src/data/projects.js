@@ -132,13 +132,14 @@ export const PROJECTS = [
       "La proximité, la confiance et la simplicité guident l'expérience.",
       "Les données privées sont protégées côté serveur, pas uniquement dans l'interface.",
     ],
+    // Les 3 premières servent aussi de trio de tête sur la fiche projet.
     screens: [
-      flashShot("05-accueil.jpg", "flash", "Accueil — pros et annonces récentes"),
       flashShot("01-recherche.jpg", "flash", "Recherche géolocalisée et catégories"),
+      flashShot("05-accueil.jpg", "flash", "Accueil — pros et annonces récentes"),
+      flashShot("06-espace-pro.jpg", "flash-2", "Espace pro — statistiques et contacts reçus"),
       flashShot("04-profil-vendeur.jpg", "flash-2", "Profil vendeur — annonces & espace pro"),
       flashShot("03-choix-operateur.jpg", "flash-pay", "Paiement — choix du pays et de l'opérateur"),
       flashShot("02-paiement-orange-money.jpg", "flash-pay", "Confirmation Orange Money"),
-      // À venir : 06-espace-pro.jpg (onglet Performances de l'espace professionnel)
     ],
     techGroups: [
       { label: "Application mobile", items: ["React Native", "Expo", "TypeScript"] },
