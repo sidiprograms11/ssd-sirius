@@ -3,6 +3,7 @@ import Icon from "@/components/Icon";
 import Reveal from "@/components/Reveal";
 import CTA from "@/components/CTA";
 import { SERVICES, PROCESS } from "@/data/services";
+import { MEETING } from "@/data/site";
 
 export const metadata = {
   title: "Services & expertises",
@@ -49,7 +50,7 @@ export default function ServicesPage() {
                   <p className="muted">{s.description}</p>
                   <div style={{ display: "flex", gap: 22, flexWrap: "wrap" }}>
                     <Link href="/contact" className="link-arrow">
-                      Demander une estimation
+                      {MEETING.ctaLabel}
                       <Icon name="ArrowRight" />
                     </Link>
                     {s.proof && (
@@ -93,9 +94,9 @@ export default function ServicesPage() {
       </section>
 
       <CTA
-        title="Besoin d'une estimation ?"
-        text="Expliquez-nous votre projet. Nous revenons vers vous avec une proposition claire."
-        primary={{ href: "/contact", label: "Demander une estimation" }}
+        title="Parlons-en de vive voix"
+        text={MEETING.long}
+        primary={{ href: "/contact", label: MEETING.ctaLabel }}
       />
     </>
   );

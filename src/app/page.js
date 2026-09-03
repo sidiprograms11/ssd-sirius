@@ -8,7 +8,7 @@ import MockShot from "@/components/MockShot";
 import SpaceScene from "@/components/SpaceScene";
 import { getProjects, getSettings } from "@/lib/content";
 import { SERVICES, DIFFERENTIATORS } from "@/data/services";
-import { SITE, HERO, GUARANTEES } from "@/data/site";
+import { HERO, GUARANTEES, MEETING } from "@/data/site";
 
 export const revalidate = 300;
 
@@ -41,7 +41,7 @@ export default async function HomePage() {
               <p className="lead">{HERO.subtitle}</p>
               <div className="hero__cta">
                 <Link href="/contact" className="btn btn--primary">
-                  Démarrer mon projet
+                  {MEETING.ctaLabel}
                   <Icon name="ArrowRight" />
                 </Link>
                 {flagship && (
@@ -51,6 +51,10 @@ export default async function HomePage() {
                   </Link>
                 )}
               </div>
+              <p className="hero__note">
+                <Icon name="Sparkles" />
+                Ni devis à remplir, ni dossier à monter — juste 5 minutes pour se parler.
+              </p>
             </div>
 
             <div className="hero__scene">

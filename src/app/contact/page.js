@@ -1,12 +1,12 @@
 import Icon from "@/components/Icon";
 import ContactForm from "@/components/ContactForm";
 import { getProjects, getSettings } from "@/lib/content";
-import { whatsappLink } from "@/data/site";
+import { whatsappLink, MEETING } from "@/data/site";
 
 export const metadata = {
   title: "Contact",
   description:
-    "Contactez SSD Sirius Solutions Digital : formulaire, e-mail, téléphone et WhatsApp. Basés à Bamako, nous accompagnons vos projets digitaux.",
+    "Contactez SSD Sirius Solutions Digitales : formulaire, e-mail, téléphone et WhatsApp. Basés à Bamako, nous accompagnons vos projets digitaux.",
   alternates: { canonical: "/contact" },
 };
 
@@ -25,10 +25,7 @@ export default async function ContactPage() {
           <h1 className="display page-hero__title" style={{ fontSize: "clamp(2.2rem, 5vw, 3.4rem)" }}>
             Parlons de votre <span className="grad-text">projet</span>
           </h1>
-          <p className="lead">
-            Décrivez votre besoin : nous revenons vers vous rapidement avec une approche claire
-            et une estimation.
-          </p>
+          <p className="lead">{MEETING.long}</p>
         </div>
       </section>
 

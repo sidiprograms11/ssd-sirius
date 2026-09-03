@@ -3,7 +3,7 @@ import { SITE } from "@/data/site";
 
 export const metadata = {
   title: "Mentions légales",
-  description: "Mentions légales et politique de confidentialité de SSD Sirius Solutions Digital.",
+  description: "Mentions légales et politique de confidentialité de SSD Sirius Solutions Digitales.",
   alternates: { canonical: "/mentions-legales" },
   robots: { index: false, follow: true },
 };

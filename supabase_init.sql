@@ -1,5 +1,5 @@
 -- ==================================================================
--- SSD Sirius Solutions Digital — Initialisation Supabase
+-- SSD Sirius Solutions Digitales — Initialisation Supabase
 -- Postgres + Auth + Storage
 -- Exécuter dans le SQL Editor du projet Supabase.
 -- ==================================================================
@@ -199,7 +199,7 @@ create policy "settings_admin_write" on public.settings
 insert into public.settings (key, value) values
   ('contact', '{"email":"contact@ssd-sirius.com","phone":"+223 70 00 00 00","whatsapp":"22370000000","city":"Bamako, Mali"}'::jsonb),
   ('social', '{"linkedin":"","facebook":"","instagram":""}'::jsonb),
-  ('company', '{"name":"SSD Sirius Solutions Digital","tagline":"Conçu au Mali. Pensé pour l''Afrique."}'::jsonb),
+  ('company', '{"name":"SSD Sirius Solutions Digitales","tagline":"Conçu au Mali. Pensé pour l''Afrique."}'::jsonb),
   ('stats', '[]'::jsonb)
 on conflict (key) do nothing;
 

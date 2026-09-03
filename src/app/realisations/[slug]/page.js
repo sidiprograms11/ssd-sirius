@@ -5,7 +5,7 @@ import MockShot from "@/components/MockShot";
 import ProjectGallery from "@/components/ProjectGallery";
 import CTA from "@/components/CTA";
 import { getProject, getProjectSlugs } from "@/lib/content";
-import { SITE } from "@/data/site";
+import { SITE, MEETING } from "@/data/site";
 
 export const revalidate = 300;
 export const dynamicParams = true;
@@ -362,8 +362,8 @@ export default async function ProjectPage({ params }) {
 
       <CTA
         title="Vous voulez la même chose pour votre activité ?"
-        text="Décrivez votre projet : on revient vers vous avec une approche, un calendrier et une estimation."
-        primary={{ href: "/contact", label: "Parler de mon projet" }}
+        text={MEETING.long}
+        primary={{ href: "/contact", label: MEETING.ctaLabel }}
         secondary={{ href: "/realisations", label: "Autres réalisations" }}
       />
     </>

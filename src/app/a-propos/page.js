@@ -8,7 +8,7 @@ import { SITE } from "@/data/site";
 export const metadata = {
   title: "À propos",
   description:
-    "SSD Sirius Solutions Digital : structure technologique basée au Mali, spécialisée dans la conception de produits numériques professionnels et adaptés au marché africain.",
+    "SSD Sirius Solutions Digitales : structure technologique basée au Mali, spécialisée dans la conception de produits numériques professionnels et adaptés au marché africain.",
   alternates: { canonical: "/a-propos" },
 };
 

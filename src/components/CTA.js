@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Icon from "@/components/Icon";
-import { SITE } from "@/data/site";
+import { MEETING } from "@/data/site";
 
 // Bloc de conversion réutilisable en fin de page.
+// Pas de devis ni d'estimation : on propose un court point en visio.
 export default function CTA({
   title = "Vous avez un projet en tête ?",
-  text = SITE.promise,
-  primary = { href: "/contact", label: "Démarrer un projet" },
+  text = MEETING.long,
+  primary = { href: "/contact", label: MEETING.ctaLabel },
   secondary = { href: "/realisations", label: "Voir les réalisations" },
 }) {
   return (

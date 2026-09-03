@@ -34,7 +34,7 @@ export default function Header() {
           <SiriusMark size={38} />
           <span className="brand__text">
             <span className="brand__name">Sirius</span>
-            <span className="brand__sub">Solutions Digital</span>
+            <span className="brand__sub">Solutions Digitales</span>
           </span>
         </Link>
 

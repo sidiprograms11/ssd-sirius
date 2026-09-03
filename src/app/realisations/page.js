@@ -5,6 +5,7 @@ import ProjectCard from "@/components/ProjectCard";
 import MockShot from "@/components/MockShot";
 import CTA from "@/components/CTA";
 import { getProjects } from "@/lib/content";
+import { MEETING } from "@/data/site";
 
 export const metadata = {
   title: "Réalisations",
@@ -115,8 +116,8 @@ export default async function RealisationsPage() {
 
       <CTA
         title="Un projet similaire ?"
-        text="Parlons de votre besoin. Nous vous proposons une approche claire et une estimation."
-        primary={{ href: "/contact", label: "Parler de mon projet" }}
+        text={MEETING.long}
+        primary={{ href: "/contact", label: MEETING.ctaLabel }}
         secondary={{ href: "/services", label: "Voir nos expertises" }}
       />
     </>

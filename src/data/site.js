@@ -3,23 +3,31 @@
 
 export const SITE = {
   name: "SSD Sirius",
-  legalName: "SSD Sirius Solutions Digital",
+  legalName: "SSD Sirius Solutions Digitales",
   tagline: "Conçu au Mali. Pensé pour l'Afrique.",
   promise:
     "Vous validez, on livre : conception, développement, base de données, paiements et publication sur les stores.",
   description:
-    "SSD Sirius Solutions Digital conçoit, développe et publie des applications et produits digitaux sur mesure — base de données, paiements Mobile Money, App Store et Play Store inclus.",
+    "SSD Sirius Solutions Digitales conçoit, développe et publie des applications et produits digitaux sur mesure — base de données, paiements Mobile Money, App Store et Play Store inclus.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://ssd-sirius.com",
   locale: "fr_FR",
 };
 
 // Contenu du hero de la page d'accueil.
 export const HERO = {
-  eyebrow: "SSD Sirius Solutions Digital",
-  titleLead: "Votre application en ligne sur les stores en",
-  titleAccent: "moins d'un mois",
+  eyebrow: "SSD Sirius Solutions Digitales",
+  titleLead: "Votre application conceptualisée et",
+  titleAccent: "disponible en 1 mois",
   subtitle:
-    "Nous concevons, développons et publions votre produit digital — base de données, paiements Mobile Money, App Store et Play Store inclus. Vous validez, on s'occupe de tout le reste.",
+    "Nous concevons, développons et publions votre application — base de données, paiements Mobile Money, App Store et Play Store inclus. Vous validez, on s'occupe de tout le reste.",
+};
+
+// Message de conversion : pas de devis ni d'estimation à remplir,
+// on demande simplement un court point en visio.
+export const MEETING = {
+  ctaLabel: "Réserver 5 min en visio",
+  short: "Une visio de 5 minutes suffit pour qu'on se comprenne.",
+  long: "Pas de dossier à monter ni de formulaire interminable : accordez-nous 5 minutes en visio. On écoute votre besoin, on vous montre ce qu'on sait faire, et vous décidez ensuite.",
 };
 
 // Engagements concrets mis en avant sur la home.

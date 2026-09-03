@@ -1,6 +1,6 @@
 # SSD Sirius — Site vitrine
 
-Site vitrine premium de **SSD Sirius Solutions Digital** : présentation de l'agence,
+Site vitrine premium de **SSD Sirius Solutions Digitales** : présentation de l'agence,
 portfolio de réalisations et prise de contact. Univers visuel sombre, spatial et technologique.
 
 ## Stack

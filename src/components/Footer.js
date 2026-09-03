@@ -17,7 +17,7 @@ export default async function Footer() {
               <SiriusMark size={40} />
               <span className="brand__text">
                 <span className="brand__name">Sirius</span>
-                <span className="brand__sub">Solutions Digital</span>
+                <span className="brand__sub">Solutions Digitales</span>
               </span>
             </Link>
             <p className="muted" style={{ marginTop: 18, maxWidth: "34ch" }}>
