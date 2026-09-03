@@ -1,0 +1,14 @@
+# Configuration Supabase CLI — SSD Sirius
+# Usage :
+#   supabase login
+#   supabase link --project-ref <ref-du-projet>
+#   supabase db push        # applique supabase/migrations/*
+
+project_id = "ssd-sirius"
+
+[db]
+major_version = 15
+
+[auth]
+# Autoriser la connexion e-mail / mot de passe pour l'admin
+enable_signup = false

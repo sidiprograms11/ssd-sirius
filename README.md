@@ -29,7 +29,10 @@ npm run dev                  # http://localhost:3000
 ## Supabase (contenu réel + admin)
 
 1. Créer un projet sur supabase.com.
-2. SQL Editor → coller et exécuter `supabase_init.sql` (tables, RLS, bucket `portfolio`).
+2. Appliquer le schéma, au choix :
+   - **Dashboard** : SQL Editor → coller et exécuter `supabase_init.sql`.
+   - **CLI** : `supabase login` → `supabase link --project-ref <ref>` → `supabase db push`
+     (applique `supabase/migrations/`).
 3. Renseigner dans `.env.local` :
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
@@ -53,7 +56,18 @@ npm run dev                  # http://localhost:3000
 - Les cadres de maquette (`MockShot`) servent de placeholder tant qu'aucune capture réelle n'est fournie.
 - Ne publier que des chiffres vérifiables (voir `STATS` dans `src/data/site.js`).
 
-## Déploiement — Google Cloud Run
+## Déploiement
+
+### Option A — Vercel (le plus rapide pour un lien public)
+
+1. Importer le dépôt GitHub sur vercel.com.
+2. Framework détecté automatiquement (Next.js), aucune config.
+3. Ajouter les variables d'environnement (`NEXT_PUBLIC_SUPABASE_URL`, etc.).
+4. Chaque `git push` sur `main` redéploie. URL de préproduction par branche.
+
+### Option B — Google Cloud Run (conforme au doc technique, Docker)
+
+Manuel :
 
 ```bash
 gcloud run deploy ssd-sirius \
@@ -63,6 +77,9 @@ gcloud run deploy ssd-sirius \
   --allow-unauthenticated \
   --set-env-vars=NEXT_PUBLIC_SUPABASE_URL=...,NEXT_PUBLIC_SUPABASE_ANON_KEY=...,SUPABASE_SERVICE_ROLE_KEY=...,NEXT_PUBLIC_SITE_URL=https://votre-domaine
 ```
+
+Automatisé : workflow `.github/workflows/deploy-cloudrun.yml` (déclenchement manuel via
+l'onglet Actions ; secrets requis documentés en tête du fichier).
 
 Le `Dockerfile` multi-stage produit une image minimale à partir de la sortie `standalone`.
 
@@ -74,6 +91,8 @@ src/
 ├── components/          # Header, Footer, SiriusMark, Starfield, ProjectCard, ContactForm...
 ├── lib/                 # supabase.js, content.js (Supabase → repli local), useSession.js
 └── data/                # site.js, services.js, projects.js (repli local)
-supabase_init.sql        # schéma + RLS + storage
+supabase_init.sql        # schéma + RLS + storage (copie dans supabase/migrations/)
+supabase/                # config.toml + migrations pour la CLI Supabase
+.github/workflows/       # deploy-cloudrun.yml (déploiement manuel Cloud Run)
 Dockerfile               # build Cloud Run
 ```
