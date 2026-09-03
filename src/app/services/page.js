@@ -2,7 +2,7 @@ import Link from "next/link";
 import Icon from "@/components/Icon";
 import Reveal from "@/components/Reveal";
 import CTA from "@/components/CTA";
-import { SERVICES, PROCESS } from "@/data/services";
+import { SERVICES, PROCESS, VALUE_PROPOSITION } from "@/data/services";
 import { MEETING } from "@/data/site";
 
 export const metadata = {
@@ -72,6 +72,41 @@ export default function ServicesPage() {
               </div>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      <section className="section section--tight" id="tarifs">
+        <div className="container">
+          <div className="section-head">
+            <span className="eyebrow">{VALUE_PROPOSITION.eyebrow}</span>
+            <h2 className="h2">{VALUE_PROPOSITION.title}</h2>
+            <p className="lead">{VALUE_PROPOSITION.intro}</p>
+          </div>
+
+          <div className="grid grid-2">
+            {VALUE_PROPOSITION.columns.map((c, i) => (
+              <Reveal
+                key={c.title}
+                delay={i * 80}
+                className="panel"
+                style={{ padding: "clamp(24px, 3.5vw, 36px)" }}
+              >
+                <span className="icon-orbit">
+                  <Icon name={c.icon} />
+                </span>
+                <h3 className="h3" style={{ margin: "18px 0 10px" }}>{c.title}</h3>
+                <p className="muted" style={{ marginBottom: 20 }}>{c.text}</p>
+                <ul className="feature-list">
+                  {c.points.map((p) => (
+                    <li key={p}>
+                      <Icon name="Check" width={16} height={16} />
+                      <span>{p}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 

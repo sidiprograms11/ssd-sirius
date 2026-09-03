@@ -22,12 +22,13 @@ export const HERO = {
     "Nous concevons, développons et publions votre application — base de données, paiements Mobile Money, App Store et Play Store inclus. Vous validez, on s'occupe de tout le reste.",
 };
 
-// Message de conversion : pas de devis ni d'estimation à remplir,
-// on demande simplement un court point en visio.
+// Message de conversion : pas de devis ni d'estimation à remplir.
+// Le visiteur nous parle de son projet, on s'occupe du reste.
 export const MEETING = {
-  ctaLabel: "Réserver 5 min en visio",
-  short: "Une visio de 5 minutes suffit pour qu'on se comprenne.",
-  long: "Pas de dossier à monter ni de formulaire interminable : accordez-nous 5 minutes en visio. On écoute votre besoin, on vous montre ce qu'on sait faire, et vous décidez ensuite.",
+  ctaLabel: "Discutons de votre projet",
+  altLabel: "Parlez-nous de votre projet",
+  short: "Parlez-nous de votre projet. Tout le reste, on s'en occupe.",
+  long: "Pas de dossier à monter ni de formulaire interminable. Parlez-nous de votre projet — un simple échange en visio suffit — et tout le reste, on s'en occupe : conception, développement, base de données, paiements et mise en ligne sur les stores.",
 };
 
 // Engagements concrets mis en avant sur la home.

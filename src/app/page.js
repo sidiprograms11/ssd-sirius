@@ -44,16 +44,15 @@ export default async function HomePage() {
                   {MEETING.ctaLabel}
                   <Icon name="ArrowRight" />
                 </Link>
-                {flagship && (
-                  <Link href={`/realisations/${flagship.slug}`} className="btn btn--ghost">
-                    Découvrir {flagship.title}
-                    <Icon name="ArrowRight" />
-                  </Link>
-                )}
+                <Link href="/realisations" className="btn btn--ghost">
+                  Découvrir nos réalisations
+                  <Icon name="ArrowRight" />
+                </Link>
               </div>
               <p className="hero__note">
                 <Icon name="Sparkles" />
-                Ni devis à remplir, ni dossier à monter — juste 5 minutes pour se parler.
+                Ni devis à remplir, ni dossier à monter — parlez-nous de votre projet, on
+                s&apos;occupe du reste.
               </p>
             </div>
 

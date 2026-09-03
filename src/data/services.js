@@ -89,6 +89,38 @@ export const DIFFERENTIATORS = [
   },
 ];
 
+// Positionnement tarifaire et niveau d'exécution — section dédiée sur /services.
+export const VALUE_PROPOSITION = {
+  eyebrow: "Prix & niveau d'exécution",
+  title: "Un tarif accessible, une exécution de très haut niveau",
+  intro:
+    "La qualité technique ne devrait pas être réservée aux grands budgets. Nous appliquons aux projets africains les standards des produits internationaux, à un prix pensé pour le marché local.",
+  columns: [
+    {
+      icon: "Wallet",
+      title: "Un prix abordable et raisonnable",
+      text: "Nos tarifs sont calibrés pour les entreprises, commerçants et organisations d'ici — pas alignés sur les grilles européennes.",
+      points: [
+        "Un tarif annoncé clairement, sans frais cachés",
+        "Un budget adapté à la taille réelle de votre projet",
+        "Paiement échelonné possible selon les étapes",
+        "Aucun coût de licence imposé : le produit vous appartient",
+      ],
+    },
+    {
+      icon: "Cpu",
+      title: "Une réalisation technique de pointe",
+      text: "Les mêmes outils et les mêmes exigences que les produits internationaux, sans compromis sur l'architecture ni sur la sécurité.",
+      points: [
+        "Architecture moderne, pensée pour monter en charge",
+        "Sécurité au niveau de la base de données, pas seulement de l'interface",
+        "Performances soignées, y compris en connexion instable",
+        "Code maintenable et documenté, que vous gardez",
+      ],
+    },
+  ],
+};
+
 export const PROCESS = [
   { step: "01", title: "Cadrage", text: "Nous clarifions le besoin métier, les objectifs et les priorités." },
   { step: "02", title: "Conception", text: "Nous concevons les parcours, l'interface et l'architecture technique." },
