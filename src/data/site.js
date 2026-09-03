@@ -29,9 +29,12 @@ export const MEETING = {
   altLabel: "Parlez-nous de votre projet",
   short: "Parlez-nous de votre projet. Tout le reste, on s'en occupe.",
   long: "Pas de dossier à monter ni de formulaire interminable. Parlez-nous de votre projet — un simple échange en visio suffit — et tout le reste, on s'en occupe : conception, développement, base de données, paiements et mise en ligne sur les stores.",
-  // Lien de réservation (Google Agenda / Calendly).
+  // Lien de réservation Google Agenda (visio Meet).
   // Tant qu'il est vide, les boutons renvoient vers /contact.
-  bookingUrl: process.env.NEXT_PUBLIC_BOOKING_URL || "",
+  bookingUrl:
+    process.env.NEXT_PUBLIC_BOOKING_URL || "https://calendar.app.google/fhvf1aoL6gvsn7Kz7",
+  bookingLabel: "Choisir un créneau",
+  bookingHint: "Choisissez l'horaire qui vous arrange, le lien visio arrive automatiquement.",
 };
 
 // Engagements concrets mis en avant sur la home.

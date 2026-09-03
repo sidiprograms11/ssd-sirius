@@ -28,16 +28,26 @@ export default async function ContactPage() {
           <p className="lead">{MEETING.long}</p>
 
           {MEETING.bookingUrl && (
-            <a
-              href={MEETING.bookingUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn--primary"
-              style={{ marginTop: 26 }}
-            >
-              Choisir un créneau
-              <Icon name="ArrowUpRight" />
-            </a>
+            <div className="hero__cta">
+              <a
+                href={MEETING.bookingUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn--primary"
+              >
+                {MEETING.bookingLabel}
+                <Icon name="ArrowUpRight" />
+              </a>
+              <a
+                className="btn btn--ghost"
+                href={whatsappLink("Bonjour SSD Sirius, je souhaite discuter d'un projet.")}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Écrire sur WhatsApp
+                <Icon name="MessageCircle" />
+              </a>
+            </div>
           )}
         </div>
       </section>
@@ -48,6 +58,27 @@ export default async function ContactPage() {
             <ContactForm projects={projects} />
 
             <div className="contact-cards">
+              {MEETING.bookingUrl && (
+                <a
+                  className="booking-card"
+                  href={MEETING.bookingUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span className="icon-orbit">
+                    <Icon name="CalendarClock" />
+                  </span>
+                  <div>
+                    <h2 className="h3">Réserver un échange</h2>
+                    <p className="muted">{MEETING.bookingHint}</p>
+                    <span className="link-arrow">
+                      {MEETING.bookingLabel}
+                      <Icon name="ArrowUpRight" />
+                    </span>
+                  </div>
+                </a>
+              )}
+
               <a className="panel contact-line" href={`mailto:${contact.email}`}>
                 <Icon name="Mail" />
                 <div>

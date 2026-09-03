@@ -1452,6 +1452,34 @@ h4 {
   .contact-grid { grid-template-columns: 1fr; }
 }
 
+/* Carte de réservation de rendez-vous */
+.booking-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px;
+  align-items: start;
+  padding: clamp(20px, 3vw, 26px);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border-glow);
+  background:
+    radial-gradient(420px 220px at 0% 0%, var(--body-glow-1), transparent 70%),
+    var(--bg-panel-strong);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+
+.booking-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+.booking-card .h3 { margin-bottom: 6px; }
+.booking-card .muted { font-size: 0.88rem; }
+.booking-card .link-arrow { margin-top: 12px; }
+
+@media (max-width: 480px) {
+  .booking-card { grid-template-columns: 1fr; }
+}
+
 /* -------------------------------------------------- Process / steps -------- */
 .steps {
   display: grid;
