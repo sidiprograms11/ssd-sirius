@@ -9,7 +9,11 @@ export const SITE = {
     "Vous validez, on livre : conception, développement, base de données, paiements et publication sur les stores.",
   description:
     "SSD Sirius Solutions Digitales conçoit, développe et publie des applications et produits digitaux sur mesure — base de données, paiements Mobile Money, App Store et Play Store inclus.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://ssd-sirius.com",
+  // URL publique actuelle (Cloud Run). À remplacer par le domaine définitif
+  // dès qu'il est acheté, ou à surcharger via NEXT_PUBLIC_SITE_URL au build.
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    "https://ssd-sirius-853636021305.europe-west1.run.app",
   locale: "fr_FR",
 };
 
