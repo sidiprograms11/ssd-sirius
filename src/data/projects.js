@@ -163,6 +163,112 @@ export const PROJECTS = [
   },
 
   {
+    slug: "malilink",
+    title: "MaliLink",
+    client_name: "",
+    own_product: true,
+    type: "plateforme",
+    category: "Plateforme d'emploi",
+    featured: true,
+    status: "published",
+    sort_order: 2,
+    link_url: "https://malilink-web-779884436442.europe-west1.run.app",
+    link_label: "Voir MaliLink en ligne",
+    cover: "market",
+    cover_url: "/realisations/malilink/01-accueil.jpg",
+    platforms: ["Web", "Mobile & desktop"],
+    summary:
+      "La plateforme d'emploi qui connecte les talents maliens — et la diaspora — aux entreprises qui recrutent. Conçue et développée par SSD Sirius.",
+    context:
+      "Au Mali, chercher un emploi passe encore largement par le bouche-à-oreille, les groupes de discussion et des annonces dispersées. MaliLink rassemble l'offre et la demande sur une plateforme unique, en français, ouverte aux candidats du pays comme de la diaspora.",
+    problem:
+      "Trois obstacles à lever : des offres éparpillées et invérifiables, un dossier de candidature à reconstituer à chaque fois (CV, diplômes, acte de naissance), et une inscription qui suppose une adresse e-mail que tout le monde n'utilise pas au quotidien.",
+    solution:
+      "SSD Sirius a conçu et développé MaliLink de bout en bout : une inscription par numéro de téléphone (l'e-mail reste optionnel), un coffre-fort de documents réutilisable qui rend chaque candidature instantanée, des employeurs vérifiés par NIF et RCCM, et une recherche filtrée par région, secteur et type de contrat — diaspora incluse.",
+    description:
+      "L'architecture sépare l'interface et les données : un front Next.js prérendu pour la vitesse, et une API dédiée, chacun déployé comme un service indépendant sur Google Cloud Run. Les deux peuvent évoluer et monter en charge séparément.",
+    highlights: [
+      {
+        icon: "Smartphone",
+        title: "Inscription par téléphone",
+        text: "Le numéro sert d'identifiant, l'e-mail reste optionnel : un parcours pensé pour les usages réels au Mali.",
+      },
+      {
+        icon: "ShieldCheck",
+        title: "Coffre-fort de documents",
+        text: "CV, diplômes et acte de naissance déposés une seule fois, réutilisés à chaque candidature.",
+      },
+      {
+        icon: "BadgeCheck",
+        title: "Employeurs vérifiés",
+        text: "Les entreprises sont validées par NIF et RCCM avant de pouvoir publier une offre.",
+      },
+      {
+        icon: "Globe",
+        title: "Mali & diaspora",
+        text: "Les talents maliens de l'étranger postulent depuis leur pays de résidence.",
+      },
+      {
+        icon: "Users",
+        title: "Deux espaces distincts",
+        text: "Un parcours candidat et un parcours recruteur, chacun avec ses propres écrans et ses propres droits.",
+      },
+      {
+        icon: "Boxes",
+        title: "Front et API séparés",
+        text: "Deux services Cloud Run indépendants : l'interface et les données évoluent séparément.",
+      },
+    ],
+    featureGroups: [
+      {
+        label: "Pour les candidats",
+        items: [
+          "Inscription en 2 minutes avec le numéro de téléphone comme identifiant",
+          "Coffre-fort sécurisé pour CV, diplômes et pièces justificatives",
+          "Candidature en un clic depuis les documents déjà déposés",
+          "Recherche filtrée par région, secteur et type de contrat",
+          "Offres accessibles depuis l'étranger pour la diaspora",
+        ],
+      },
+      {
+        label: "Pour les recruteurs",
+        items: [
+          "Espace recruteur distinct dès la création du compte",
+          "Vérification de l'entreprise par NIF et RCCM",
+          "Publication et gestion des offres d'emploi",
+          "Réception des candidatures avec les pièces jointes",
+        ],
+      },
+      {
+        label: "Plateforme",
+        items: [
+          "Interface entièrement en français",
+          "Couverture des régions du Mali et option diaspora",
+          "Pages prérendues pour un affichage rapide en connexion modeste",
+          "Front et API déployés comme deux services indépendants",
+        ],
+      },
+    ],
+    screens: [
+      { url: "/realisations/malilink/01-accueil.jpg", tone: "market", label: "Accueil — l'emploi au Mali, repensé" },
+      { url: "/realisations/malilink/02-processus.jpg", tone: "market-2", label: "Postuler en trois étapes" },
+      { url: "/realisations/malilink/03-fonctionnalites.jpg", tone: "market-3", label: "Coffre-fort, diaspora et employeurs vérifiés" },
+      { url: "/realisations/malilink/04-inscription.jpg", tone: "dark", label: "Création de compte candidat ou recruteur" },
+    ],
+    techGroups: [
+      { label: "Interface web", items: ["Next.js", "React", "Rendu prérendu (ISR)"] },
+      { label: "Back-end", items: ["API dédiée", "Service indépendant"] },
+      { label: "Infrastructure", items: ["Google Cloud Run", "Conteneurs", "europe-west1"] },
+    ],
+    technologies: ["Next.js", "React", "API dédiée", "Google Cloud Run"],
+    metrics: [
+      { label: "Architecture", value: "Front + API séparés" },
+      { label: "Identifiant", value: "Numéro de téléphone" },
+      { label: "Portée", value: "Mali + diaspora" },
+    ],
+  },
+
+  {
     slug: "plateforme-e-commerce",
     title: "Plateforme e-commerce",
     client_name: "Projet interne SSD Sirius",
@@ -170,7 +276,7 @@ export const PROJECTS = [
     category: "E-commerce",
     featured: false,
     status: "published",
-    sort_order: 2,
+    sort_order: 3,
     link_url: "",
     cover: "commerce",
     summary:
@@ -209,7 +315,7 @@ export const PROJECTS = [
     category: "Performance & architecture",
     featured: false,
     status: "published",
-    sort_order: 3,
+    sort_order: 4,
     link_url: "",
     cover: "pay",
     summary:
@@ -247,7 +353,7 @@ export const PROJECTS = [
     category: "Web & conversion",
     featured: false,
     status: "published",
-    sort_order: 4,
+    sort_order: 5,
     link_url: "",
     cover: "market",
     summary:
