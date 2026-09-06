@@ -17,7 +17,7 @@ export default async function MentionsPage() {
     <section className="section" style={{ paddingTop: "clamp(80px, 12vw, 140px)" }}>
       <div className="container">
         <span className="eyebrow">Conformité</span>
-        <h1 className="display" style={{ fontSize: "clamp(2rem, 4.6vw, 3rem)", margin: "16px 0 32px" }}>
+        <h1 className="display display--page" style={{ margin: "16px 0 32px" }}>
           Mentions légales
         </h1>
 

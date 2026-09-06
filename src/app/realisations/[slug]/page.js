@@ -108,7 +108,7 @@ export default async function ProjectPage({ params }) {
                 height={72}
               />
             )}
-            <h1 className="display page-hero__title" style={{ fontSize: "clamp(2rem, 4.6vw, 3rem)", margin: 0 }}>
+            <h1 className="display display--page page-hero__title" style={{ margin: 0 }}>
               {project.title}
             </h1>
           </div>
@@ -226,7 +226,7 @@ export default async function ProjectPage({ params }) {
           <div className="container">
             <div className="section-head">
               <span className="eyebrow">Fonctionnalités</span>
-              <h2 className="h2" style={{ fontSize: "clamp(1.4rem, 2.6vw, 1.9rem)" }}>
+              <h2 className="h2 h2--sm">
                 Tout ce que fait l&apos;application
               </h2>
             </div>
@@ -277,7 +277,7 @@ export default async function ProjectPage({ params }) {
           <div className="container">
             <div className="section-head">
               <span className="eyebrow">Aperçus</span>
-              <h2 className="h2" style={{ fontSize: "clamp(1.4rem, 2.6vw, 1.9rem)" }}>
+              <h2 className="h2 h2--sm">
                 {isPhone ? "L'application en images" : "Galerie du projet"}
               </h2>
             </div>

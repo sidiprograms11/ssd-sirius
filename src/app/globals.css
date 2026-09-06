@@ -147,6 +147,13 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Les liens d ancre ne doivent pas passer sous l en-tête collant */
+[id] { scroll-margin-top: 92px; }
+
+@media (max-width: 620px) {
+  [id] { scroll-margin-top: 82px; }
+}
+
 body {
   min-height: 100dvh;
   background-color: var(--bg-900);
@@ -206,24 +213,35 @@ h4 {
   font-weight: 600;
   letter-spacing: 0.01em;
   text-wrap: balance;
+  /* Filet de sécurité : les mots français longs en capitales
+     (CONCEPTUALISÉE, RÉALISATIONS...) ne doivent jamais déborder. */
+  overflow-wrap: break-word;
 }
 
 .display {
-  font-size: clamp(2.6rem, 6.4vw, 4.6rem);
+  font-size: clamp(2.05rem, 6.4vw, 4.6rem);
   font-weight: 600;
   letter-spacing: var(--tracking-title);
   text-transform: uppercase;
-  line-height: 1.04;
+  line-height: 1.06;
+}
+
+/* Titres de page intérieure : un cran en dessous du hero d accueil */
+.display--page {
+  font-size: clamp(1.85rem, 4.8vw, 3.2rem);
 }
 
 .h2 {
-  font-size: clamp(1.8rem, 3.6vw, 2.7rem);
+  font-size: clamp(1.55rem, 3.6vw, 2.7rem);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
+.h2--md { font-size: clamp(1.45rem, 3.2vw, 2.4rem); }
+.h2--sm { font-size: clamp(1.25rem, 2.6vw, 1.9rem); }
+
 .h3 {
-  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -232,6 +250,8 @@ h4 {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  max-width: 100%;
+  overflow-wrap: break-word;
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: var(--tracking-eyebrow);
@@ -286,6 +306,24 @@ h4 {
   gap: 18px;
   max-width: 62ch;
   margin-bottom: clamp(32px, 5vw, 56px);
+}
+
+/* Titre à gauche, bouton à droite — repasse en colonne sur mobile */
+.section-head--split {
+  max-width: none;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+@media (max-width: 620px) {
+  .section-head--split {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
 }
 
 .grid {
@@ -646,6 +684,11 @@ h4 {
     border-bottom: 1px solid var(--border);
   }
   .mobile-nav a:last-of-type { border-bottom: 0; }
+  /* .mobile-nav a est plus spécifique que .btn--primary : on rétablit
+     la couleur du bouton, sinon son libellé passe en gris. */
+  .mobile-nav .btn { border-bottom: 0; }
+  .mobile-nav .btn--primary { color: var(--on-accent); }
+  .mobile-nav .btn--ghost { color: var(--text); }
   .mobile-nav .btn { margin-top: 12px; }
 }
 
@@ -961,6 +1004,7 @@ h4 {
 
 .badge-flagship {
   display: inline-flex;
+  align-self: flex-start;
   align-items: center;
   gap: 8px;
   padding: 6px 14px;
@@ -1693,6 +1737,159 @@ h4 {
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+
+
+/* ==================================================================
+   GARDE-FOUS ANTI-DÉBORDEMENT
+   Les enfants de grille ont `min-width: auto` par défaut : un mot long
+   (CONCEPTUALISÉE) élargit sa colonne au-delà du conteneur et pousse
+   tout le bloc hors de l'écran. `min-width: 0` autorise la réduction.
+   ================================================================== */
+.grid > *,
+.hero__grid > *,
+.flagship__grid > *,
+.contact-grid > *,
+.stats > *,
+.proofbar > *,
+.steps > *,
+.tech-groups > *,
+.site-footer__grid > *,
+.mm-callout > *,
+.booking-card > *,
+.contact-line > * {
+  min-width: 0;
+}
+
+.eyebrow::before,
+.proofbar__item svg,
+.contact-line svg {
+  flex-shrink: 0;
+}
+
+/* ==================================================================
+   MOBILE (≤ 620px)
+   Échelle typographique resserrée, interlettrage réduit — c'est lui
+   qui faisait déborder les titres en capitales — et mises en page
+   ramenées sur une colonne.
+   ================================================================== */
+@media (max-width: 620px) {
+  :root {
+    --gutter: 18px;
+    --section-y: clamp(46px, 12vw, 70px);
+    --tracking-title: 0.03em;
+    --tracking-eyebrow: 0.16em;
+  }
+
+  /* ---- Typographie ---- */
+  .display { font-size: clamp(1.72rem, 8vw, 2.4rem); line-height: 1.14; }
+  .display--page { font-size: clamp(1.6rem, 7.2vw, 2.1rem); }
+  .h2,
+  .h2--md { font-size: clamp(1.28rem, 5.6vw, 1.7rem); letter-spacing: 0.05em; }
+  .h2--sm { font-size: clamp(1.12rem, 5vw, 1.42rem); letter-spacing: 0.04em; }
+  .h3 { font-size: 1rem; letter-spacing: 0.04em; }
+  /* Sur deux lignes, le tiret doit rester aligné sur la première */
+  .eyebrow { font-size: 0.64rem; align-items: flex-start; }
+  .eyebrow::before { width: 16px; margin-top: 0.78em; }
+  .lead { font-size: 0.96rem; }
+
+  /* ---- Hero ---- */
+  .hero { padding-block: 30px 12px; }
+  .hero__grid { gap: 28px; }
+  .hero__title { margin-block: 14px 16px; }
+  .hero__cta { gap: 10px; margin-top: 22px; }
+  .hero__cta .btn { flex: 1 1 100%; justify-content: center; }
+  .hero__note { align-items: flex-start; font-size: 0.8rem; line-height: 1.45; }
+  .hero__note svg { margin-top: 3px; }
+  .hero__scene { aspect-ratio: 4 / 3; border-radius: var(--r-lg); }
+
+  /* Une seule colonne : deux cases serrées étaient illisibles */
+  .proofbar {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 32px;
+    padding-top: 24px;
+  }
+
+  /* ---- Boutons : cible tactile confortable ---- */
+  .btn { padding: 13px 18px; font-size: 0.75rem; letter-spacing: 0.11em; }
+  .btn--sm { padding: 10px 14px; font-size: 0.67rem; }
+  .link-arrow { font-size: 0.72rem; letter-spacing: 0.12em; }
+
+  /* ---- Surfaces ---- */
+  .card,
+  .panel { border-radius: var(--r-md); }
+  .card { padding: 20px 18px; gap: 12px; }
+  .flagship,
+  .mission { padding: 24px 18px; border-radius: var(--r-lg); }
+  .mission h2 { max-width: none; }
+  .icon-orbit { width: 50px; height: 50px; }
+  .icon-orbit svg { width: 21px; height: 21px; }
+  .section-head { gap: 13px; margin-bottom: 26px; }
+
+  /* ---- Fiche projet ---- */
+  .project-title-row { gap: 13px; margin-block: 14px 14px; }
+  .breadcrumb { flex-wrap: wrap; row-gap: 4px; }
+  .tech-groups { gap: 16px; }
+
+  /* ---- Indicateurs ---- */
+  .stats__value { font-size: 1.45rem; }
+  .stats__label { font-size: 0.62rem; letter-spacing: 0.1em; }
+  .stats__item { padding: 22px 12px; }
+
+  /* ---- Process ---- */
+  .step { padding: 20px 18px; }
+
+  /* ---- Captures & galerie ---- */
+  .screens-row { grid-auto-columns: minmax(128px, 148px); gap: 10px; }
+  .screen-item span { font-size: 0.68rem; }
+  .gallery { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .gallery--phones { grid-template-columns: repeat(2, 1fr); justify-content: stretch; }
+  .hero-phones { gap: 10px; }
+
+  /* ---- Formulaires ----
+     16px minimum : en dessous, iOS zoome automatiquement au focus. */
+  .field input,
+  .field textarea,
+  .field select { padding: 13px 14px; font-size: 16px; }
+  .field label { font-size: 0.68rem; }
+  .field { margin-bottom: 15px; }
+
+  /* ---- Contact ---- */
+  .contact-line { padding: 14px 16px; }
+  .booking-card { padding: 20px 18px; }
+
+  /* ---- Footer ---- */
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 0.74rem;
+  }
+  .footer-col a,
+  .footer-col p { font-size: 0.86rem; padding-block: 6px; }
+
+  /* ---- Prose (mentions légales) ---- */
+  .prose h2 { font-size: 1.08rem; margin: 30px 0 12px; }
+}
+
+/* ==================================================================
+   PETITS ÉCRANS (≤ 400px)
+   ================================================================== */
+@media (max-width: 400px) {
+  :root { --gutter: 15px; }
+
+  .display { font-size: 1.58rem; }
+  .display--page { font-size: 1.46rem; }
+  .h2, .h2--md { font-size: 1.2rem; }
+
+  .brand__name { font-size: 0.95rem; letter-spacing: 0.26em; }
+  .brand__sub { font-size: 0.46rem; letter-spacing: 0.26em; }
+
+  .hero-phones .mock--phone:nth-child(2) { max-width: none; }
+  .gallery,
+  .gallery--phones { grid-template-columns: 1fr; }
+  .project-logo { width: 46px; height: 46px; }
 }
 
 /* -------------------------------------------------- Reduced motion -------- */

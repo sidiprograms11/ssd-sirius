@@ -86,7 +86,7 @@ export default async function HomePage() {
                     <Icon name="Star" />
                     Projet phare
                   </span>
-                  <h2 className="h2" style={{ fontSize: "clamp(1.7rem, 3.2vw, 2.4rem)" }}>
+                  <h2 className="h2 h2--md">
                     {flagship.title}
                   </h2>
                   {flagship.platforms?.length > 0 && (
@@ -186,17 +186,7 @@ export default async function HomePage() {
       {rest.length > 0 && (
         <section className="section" id="realisations">
           <div className="container">
-            <div
-              className="section-head"
-              style={{
-                maxWidth: "none",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "flex-end",
-                flexWrap: "wrap",
-                gap: 20,
-              }}
-            >
+            <div className="section-head section-head--split">
               <div className="stack" style={{ "--gap": "14px" }}>
                 <span className="eyebrow">Réalisations</span>
                 <h2 className="h2">

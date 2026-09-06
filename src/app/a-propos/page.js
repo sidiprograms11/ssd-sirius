@@ -29,7 +29,7 @@ export default function AProposPage() {
           <div className="hero__grid" style={{ alignItems: "center" }}>
             <div>
               <span className="eyebrow">L'entreprise</span>
-              <h1 className="display page-hero__title" style={{ fontSize: "clamp(2rem, 4.6vw, 3rem)" }}>
+              <h1 className="display display--page page-hero__title">
                 Une structure <span className="grad-text">technologique</span>, basée au Mali
               </h1>
               <p className="lead">

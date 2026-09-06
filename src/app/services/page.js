@@ -20,7 +20,7 @@ export default function ServicesPage() {
       <section className="page-hero">
         <div className="container">
           <span className="eyebrow">Nos expertises</span>
-          <h1 className="display page-hero__title" style={{ fontSize: "clamp(2.2rem, 5vw, 3.4rem)" }}>
+          <h1 className="display display--page page-hero__title">
             Ce que nous savons <span className="grad-text">construire</span>
           </h1>
           <p className="lead">
@@ -44,7 +44,7 @@ export default function ServicesPage() {
                   <span className="icon-orbit">
                     <Icon name={s.icon} />
                   </span>
-                  <h2 className="h2" style={{ fontSize: "clamp(1.4rem, 2.6vw, 1.9rem)" }}>
+                  <h2 className="h2 h2--sm">
                     {s.title}
                   </h2>
                   <p className="muted">{s.description}</p>

@@ -7,7 +7,7 @@ export default function NotFound() {
     <section className="section" style={{ minHeight: "70dvh", display: "grid", placeItems: "center" }}>
       <div className="container text-center stack" style={{ "--gap": "18px", alignItems: "center" }}>
         <SiriusMark size={72} />
-        <h1 className="display" style={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}>
+        <h1 className="display display--page">
           Page <span className="grad-text">introuvable</span>
         </h1>
         <p className="lead mx-auto">

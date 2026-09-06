@@ -22,7 +22,7 @@ export default async function ContactPage() {
       <section className="page-hero">
         <div className="container">
           <span className="eyebrow">Contact</span>
-          <h1 className="display page-hero__title" style={{ fontSize: "clamp(2.2rem, 5vw, 3.4rem)" }}>
+          <h1 className="display display--page page-hero__title">
             Parlons de votre <span className="grad-text">projet</span>
           </h1>
           <p className="lead">{MEETING.long}</p>

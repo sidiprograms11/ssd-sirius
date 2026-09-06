@@ -26,7 +26,7 @@ export default async function RealisationsPage() {
       <section className="page-hero">
         <div className="container">
           <span className="eyebrow">Portfolio</span>
-          <h1 className="display page-hero__title" style={{ fontSize: "clamp(2.2rem, 5vw, 3.4rem)" }}>
+          <h1 className="display display--page page-hero__title">
             Nos <span className="grad-text">réalisations</span>
           </h1>
           <p className="lead">
@@ -45,7 +45,7 @@ export default async function RealisationsPage() {
                     <Icon name="Star" />
                     Projet phare
                   </span>
-                  <h2 className="h2" style={{ fontSize: "clamp(1.7rem, 3.2vw, 2.4rem)" }}>
+                  <h2 className="h2 h2--md">
                     {flagship.title}
                   </h2>
                   {flagship.platforms?.length > 0 && (
